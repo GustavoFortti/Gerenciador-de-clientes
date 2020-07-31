@@ -70,7 +70,7 @@ class UsersController {
                 name,
                 password: hash,
                 cpf,
-                email,
+                email, 
                 image: 'perfil.png',
                 enable: '1',
                 level: '1',
@@ -99,7 +99,20 @@ class UsersController {
         try {
             const user = await knex('users').select('*');
 
-            return response.status(200).json(user);
+            const serializedUsers = user.map(el => {
+                return {
+                    id: el.id,
+                    name: el.name,
+                    password: el.password,
+                    cpf: el.cpf,
+                    email: el.email, 
+                    image: `http://192.168.15.6:3333/uploads/${el.image}`,
+                    enable: el.enable,
+                    level: el.level,
+                };
+            });
+
+            return response.status(200).json(serializedUsers);
         } catch (err) {
             return response.status(400).send({ error: 'Requisition failed' });
         }
