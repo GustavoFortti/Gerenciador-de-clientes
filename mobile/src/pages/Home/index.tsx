@@ -4,6 +4,7 @@ import { View, Image, ImageBackground, StyleSheet, Text, TextInput } from 'react
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native'
 
+
 const Home = () => {
   const navigation = useNavigation();
   function handleNavigateToAdministrator() {
@@ -20,7 +21,7 @@ const Home = () => {
         <Text style={styles.title}>Gerencie seus nogócios</Text>
         <Text style={styles.description}>A melhor plataforma de gerenciamento é aqui</Text>
       </View>
-
+      
 
       <View style={styles.footer}>
           <TextInput
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 48,
+        backgroundColor: '#E4E4E4'
     },
   
     main: {
@@ -82,7 +84,8 @@ const styles = StyleSheet.create({
     select: {},
   
     input: {
-      height: 60,
+      height: 50,
+      top: 45,
       backgroundColor: '#FFF',
       borderRadius: 4,
       marginBottom: 8,
@@ -93,6 +96,7 @@ const styles = StyleSheet.create({
     button: {
       backgroundColor: '#3C0D8B',
       height: 60,
+      top: 40,
       flexDirection: 'row',
       borderRadius: 10,
       overflow: 'hidden',
@@ -101,7 +105,8 @@ const styles = StyleSheet.create({
     },
   
     buttonIcon: {
-      height: 60,
+      height: "100%",
+      borderRadius: 10,
       width: 60,
       backgroundColor: 'rgba(0, 0, 0, 0.1)',
       justifyContent: 'center',

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppLoading } from 'expo';
-import { StatusBar, View } from 'react-native';
+import { StatusBar, View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import * as Font from 'expo-font'
 
 import { Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto'
 import { Ubuntu_700Bold, useFonts } from '@expo-google-fonts/ubuntu'
@@ -8,6 +9,7 @@ import { Ubuntu_700Bold, useFonts } from '@expo-google-fonts/ubuntu'
 import Routes from './src/routes';
 
 export default function App() {
+
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
@@ -15,7 +17,9 @@ export default function App() {
   });
 
   if(!fontsLoaded) {
-    return <AppLoading />
+    return(
+      <AppLoading />
+    )
   }
 
   return (
@@ -25,4 +29,3 @@ export default function App() {
     </>
   );
 }
-

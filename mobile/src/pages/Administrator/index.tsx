@@ -1,18 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Image, ImageBackground, TouchableOpacity, Text, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 import Constants from 'expo-constants';
+import api from '../../services/api'
+
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    // password: string;
+    // cpf: string;
+    // image: string;
+    // level: string;
+    // enable: boolean;
+}
 
 const Administrator = () => {
     const navigation = useNavigation();
+    const [users, setUsers] = useState<User[]>([]);
+
+    useEffect(() => {
+         api.get(`api/users/adm`).then(response => {
+            setUsers(response.data);
+         });
+    }, []);
+
     function handleNavigationBack() {
         navigation.goBack();
     }
 
-    function handleNavigationToFeatures() {
-        navigation.navigate('Features');
+    function handleNavigationToFeatures(id: Number) {
+        navigation.navigate('Features', id );
     }
+    const id = 0;
 
     return (
         <ImageBackground 
@@ -27,7 +48,7 @@ const Administrator = () => {
             </View>
             <TouchableOpacity style={styles.containerAdministrator}>
                 <View style={styles.sliceElements}>
-                    <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
+                    <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.jpeg'}} style={styles.imageUrl} />
                     <View style={styles.text}>
                         <Text style={styles.description}>Gustavo</Text>
                         <Text style={styles.description}>gustavofortti@gmail.com</Text>
@@ -40,71 +61,17 @@ const Administrator = () => {
             </View>
 
             <ScrollView style={styles.scroll}>
-                <TouchableOpacity style={styles.containerUser} onPress={handleNavigationToFeatures}>
-                    <View style={styles.sliceElements}>
-                        <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
-                        <View style={styles.text}>
-                            <Text style={styles.description}>Gustavo</Text>
-                            <Text style={styles.description}>gustavofortti@gmail.com</Text>
+                {users.map(user => (
+                    <TouchableOpacity key={String(user.id)} style={styles.containerUser} onPress={() => handleNavigationToFeatures(user.id)}>
+                        <View style={styles.sliceElements}>
+                            <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.jpeg'}} style={styles.imageUrl} />
+                            <View style={styles.text}>
+                                <Text style={styles.description}>{user.name}</Text>
+                                <Text style={styles.description}>{user.email}</Text>
+                            </View>
                         </View>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.containerUser} onPress={handleNavigationToFeatures}>
-                    <View style={styles.sliceElements}>
-                        <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
-                        <View style={styles.text}>
-                            <Text style={styles.description}>Gustavo</Text>
-                            <Text style={styles.description}>gustavofortti@gmail.com</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.containerUser} onPress={handleNavigationToFeatures}>
-                    <View style={styles.sliceElements}>
-                        <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
-                        <View style={styles.text}>
-                            <Text style={styles.description}>Gustavo</Text>
-                            <Text style={styles.description}>gustavofortti@gmail.com</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.containerUser} onPress={handleNavigationToFeatures}>
-                    <View style={styles.sliceElements}>
-                        <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
-                        <View style={styles.text}>
-                            <Text style={styles.description}>Gustavo</Text>
-                            <Text style={styles.description}>gustavofortti@gmail.com</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.containerUser} onPress={handleNavigationToFeatures}>
-                    <View style={styles.sliceElements}>
-                        <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
-                        <View style={styles.text}>
-                            <Text style={styles.description}>Gustavo</Text>
-                            <Text style={styles.description}>gustavofortti@gmail.com</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.containerUser} onPress={handleNavigationToFeatures}>
-                    <View style={styles.sliceElements}>
-                        <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
-                        <View style={styles.text}>
-                            <Text style={styles.description}>Gustavo</Text>
-                            <Text style={styles.description}>gustavofortti@gmail.com</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.containerUser} onPress={handleNavigationToFeatures}>
-                    <View style={styles.sliceElements}>
-                        <Image source={{uri: 'http://192.168.15.6:3333/uploads/perfil.png'}} style={styles.imageUrl} />
-                        <View style={styles.text}>
-                            <Text style={styles.description}>Gustavo</Text>
-                            <Text style={styles.description}>gustavofortti@gmail.com</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                
-               
+                    </TouchableOpacity>
+                ))}
             </ScrollView>
         </ImageBackground>        
     );
@@ -114,6 +81,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       paddingTop: 20 + Constants.statusBarHeight,
+      backgroundColor: '#E4E4E4'
     },
 
     header: {
