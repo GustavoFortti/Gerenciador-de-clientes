@@ -4,7 +4,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons'; 
 import { RectButton } from 'react-native-gesture-handler';
 import api from '../../services/api'
-import User from '../User';
 
 interface Data {
     id: number;
@@ -21,7 +20,7 @@ const Features = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const id = route.params;
-    const [user, setUsers] = useState<Data>();
+    const [user, setUsers] = useState(null);
 
     function handleNavigationBack() {
         navigation.goBack();
@@ -55,66 +54,65 @@ const Features = () => {
                     <Text style={styles.buttonText}>Editar</Text>
                 </RectButton>
             </View>
-            
-            <View style={styles.containerInput}>
-                <Text style={styles.normalText}>
-                    {id}
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder={`${user}`}
-                />
-            </View>
+            <View style={styles.tail}>
+                <View style={styles.containerInput}>
+                    <Text style={styles.normalText}>
+                        Nome
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Nome" //{`${user}`}
+                    />
+                </View>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.normalText}>
-                    CPF
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email ou CPF" 
-                />
-            </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.normalText}>
+                        CPF
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email ou CPF" 
+                    />
+                </View>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.normalText}>
-                    Email
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email ou CPF" 
-                />
-            </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.normalText}>
+                        Email
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email ou CPF" 
+                    />
+                </View>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.normalText}>
-                    Senha
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email ou CPF" 
-                />
+                <View style={styles.containerInput}>
+                    <Text style={styles.normalText}>
+                        Senha
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email ou CPF" 
+                    />
+                </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.normalText}>
+                        Level
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email ou CPF" 
+                    />
+                </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.normalText}>
+                        Estado
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email ou CPF" 
+                    />
+                </View>
             </View>
-            <View style={styles.containerInput}>
-                <Text style={styles.normalText}>
-                    Level
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email ou CPF" 
-                />
-            </View>
-            <View style={styles.containerInput}>
-                <Text style={styles.normalText}>
-                    Estado
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email ou CPF" 
-                />
-            </View>
-
-
         </ImageBackground>
     );
 };
@@ -142,7 +140,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 18,
-        // fontFamily: 'Ubuntu_700Bold',
+        fontFamily: 'Ubuntu_700Bold',
         color: '#3A0E86',
         textAlign: 'right',
         marginStart: '42%'
@@ -150,7 +148,7 @@ const styles = StyleSheet.create({
 
     normalText: {
         color: '#6D6D6D',
-        // fontFamily: 'Roboto_400Regular',
+        fontFamily: 'Roboto_400Regular',
         textAlign: 'center',
         fontSize: 18,
     },
@@ -159,6 +157,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
+    },
+
+    tail: {
+        marginTop: '10%',
     },
 
     imageUrl: {
@@ -172,10 +174,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginLeft: "-30%",
+        marginLeft: -48,
         backgroundColor: '#FFF',
         height: 48,
-        marginBottom: 5,
+        marginBottom: 8,
         width: 400,
     },
 

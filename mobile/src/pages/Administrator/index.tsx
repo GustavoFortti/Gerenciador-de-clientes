@@ -33,7 +33,6 @@ const Administrator = () => {
     function handleNavigationToFeatures(id: Number) {
         navigation.navigate('Features', id );
     }
-    const id = 0;
 
     return (
         <ImageBackground 
@@ -93,12 +92,13 @@ const styles = StyleSheet.create({
 
     text: {
         justifyContent: 'space-evenly',
+        marginLeft: '10%',
     },
 
     sliceElements: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginLeft: '-5%',
+        justifyContent: 'flex-start',
+        marginLeft: '10%',
         alignItems: 'center',
     },
 
@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
       marginRight: 8,
       alignItems: 'center',
       justifyContent: 'space-between',
-  
       textAlign: 'center',
     },
   
