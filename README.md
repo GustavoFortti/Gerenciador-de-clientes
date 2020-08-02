@@ -1,23 +1,23 @@
-### Maimaneger
+# Maimaneger
   
 
-### Tocnologias
+## Tocnologias
 
 - Node.js
 - React Native
 - TypeScript
 - Expo
 
-### Como rodar o projeto
+## Como rodar o projeto
  
 - No diretorio `server/` execute: `npm run dev`
 - No diretorio `mobile/` execute: `npm start`
 
-### Dependencias do projeto
+## Dependencias do projeto
 
-##	Mobile
+###	Mobile
 
-		"dependencies": {
+	"dependencies": {
 		"@expo-google-fonts/roboto": "^0.1.0",
 		"@expo-google-fonts/ubuntu": "^0.1.0",
 		"@expo/vector-icons": "^10.0.0",
@@ -47,7 +47,7 @@
 		"typescript": "~3.9.5"
 	},
 
-## Server
+### Server
 
 	"dependencies": {
 	"@types/express": "^4.17.7",
